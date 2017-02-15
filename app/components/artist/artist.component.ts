@@ -13,7 +13,7 @@ moduleId: module.id,
 export class ArtistComponent {
 	id:string;
 	artist: Artist[];
-	album:Album[];
+	albums:Album[];
 
 	constructor(private _spotifyService: SpotifyService, private _route:ActivatedRoute){
 
@@ -27,6 +27,12 @@ export class ArtistComponent {
 			.subscribe(artist => {
 				this.artist = artist;
 				console.log(artist.name)
+			})
+			this._spotifyService.getAlbums(id)
+			.subscribe(album => {
+				this.albums = album.items;
+				console.log(album.items)
+				
 			})
 		});
 	}
